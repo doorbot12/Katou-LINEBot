@@ -68,7 +68,7 @@ export default class HandleEvent {
       }
 
       if(msgText.includes("katou cari gambar")) {
-        let keyword = msgText.substr(18);
+        let keyword = encodeURI(msgText.substr(18));
         if (keyword.length <= 0) return client.replyMessage(replyToken, Wrapper.replyText("Silahkan masukan nama gambar yang ingin dicari"));
 
         botApi.getImgUrl(keyword).then(result => {
