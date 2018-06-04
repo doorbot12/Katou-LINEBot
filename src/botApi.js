@@ -78,6 +78,8 @@ export default function BotApi() {
 
       gis(options, (err, result) => {
         if(err) reject(`Gambar ${ keyword } tidak ditemukan`);
+        (result === undefined) ? reject(`Gambar ${ keyword } tidak ditemukan`) : null;
+        
         let randomUrl = Math.round(Math.random() * result.length);
 
         (result[randomUrl] === undefined) ? reject(`Gambar ${ keyword } tidak ditemukan`) : resolve(result[randomUrl].url);
@@ -134,7 +136,6 @@ export default function BotApi() {
           }
 
           ytdlCore.getInfo(resultVideo.link, {}, (err, info) => {
-            console.log(info);
             if (err){
               resultVideo.videoUrl = "undefined"; 
               resolve(resultVideo);
